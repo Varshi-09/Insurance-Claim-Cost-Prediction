@@ -1,0 +1,1 @@
+web: gunicorn insurance_prediction.wsgi
