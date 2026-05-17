@@ -1,0 +1,317 @@
+{% extends 'users/userbase.html' %}
+{% block contents %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Insurance Claim Prediction</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+background:linear-gradient(135deg,#eef2ff 0%,#f8fafc 100%);
+font-family:'Inter','Segoe UI',sans-serif;
+min-height:100vh;
+margin:0;
+}
+
+.form-container{
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(12px);
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+padding:2rem;
+border:1px solid rgba(255,255,255,0.4);
+}
+
+.form-control,.form-select{
+border:1.5px solid #e2e8f0;
+border-radius:10px;
+padding:0.75rem;
+background:#f9fafb;
+transition:all 0.25s ease;
+}
+
+.form-control:focus,.form-select:focus{
+border-color:#3b82f6;
+box-shadow:0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.btn-primary{
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+border:none;
+border-radius:10px;
+font-weight:600;
+padding:0.75rem 1.5rem;
+transition:all 0.3s ease;
+}
+
+.btn-primary:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(37,99,235,0.3);
+}
+
+.result-card{
+background:rgba(255,255,255,0.9);
+border-radius:14px;
+padding:1.2rem;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+border-left:5px solid #22c55e;
+}
+
+.risk-badge{
+display:inline-block;
+padding:0.6rem 1.2rem;
+border-radius:999px;
+font-weight:600;
+font-size:0.95rem;
+color:white;
+}
+
+.recommendation-card{
+background:#ffffff;
+border-radius:14px;
+padding:1.2rem;
+margin-top:1rem;
+border-left:5px solid #3b82f6;
+box-shadow:0 6px 18px rgba(0,0,0,0.06);
+transition:all 0.25s ease;
+}
+
+.recommendation-card:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.recommendation-card div{
+display:flex;
+align-items:center;
+gap:8px;
+margin-bottom:6px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+h1.text-center{
+color:#1a3c6d;
+font-size:2.5rem;
+font-weight:700;
+margin-bottom:2rem;
+text-shadow:0 2px 4px rgba(0,0,0,0.1);
+display:flex;
+align-items:center;
+justify-content:center;
+gap:0.5rem;
+}
+.form-select:required:invalid{
+color:#6c757d;
+}
+
+.form-select option{
+color:#000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="text-center mb-4">
+<i class="fas fa-heartbeat"></i>
+Insurance Claim Prediction
+</h1>
+
+<div class="row justify-content-center">
+<div class="col-md-7 col-lg-5">
+
+<form method="POST" class="p-4 form-container" autocomplete="off">
+{% csrf_token %}
+
+{% for field in form %}
+<div class="mb-3">
+
+<label for="{{ field.id_for_label }}" class="form-label fw-semibold">
+{{ field.label }}
+</label>
+
+{% if field.name == 'sex' %}
+<select name="{{ field.html_name }}" class="form-select" required>
+<option value="" disabled hidden {% if not field.value %}selected{% endif %}>Enter Gender</option>
+<option value="male" {% if field.value == "male" %}selected{% endif %}>Male</option>
+<option value="female" {% if field.value == "female" %}selected{% endif %}>Female</option>
+</select>
+
+{% elif field.name == 'region' %}
+<select name="{{ field.html_name }}" class="form-select" required>
+<option value="" disabled hidden {% if not field.value %}selected{% endif %}>Enter Region</option>
+<option value="southwest" {% if field.value == "southwest" %}selected{% endif %}>Southwest</option>
+<option value="southeast" {% if field.value == "southeast" %}selected{% endif %}>Southeast</option>
+<option value="northwest" {% if field.value == "northwest" %}selected{% endif %}>Northwest</option>
+<option value="northeast" {% if field.value == "northeast" %}selected{% endif %}>Northeast</option>
+</select>
+
+{% elif field.name == 'smoker' %}
+<select name="{{ field.html_name }}" class="form-select" required>
+<option value="" disabled hidden {% if not field.value %}selected{% endif %}>Enter Smoking Status</option>
+<option value="no" {% if field.value == "no" %}selected{% endif %}>No</option>
+<option value="yes" {% if field.value == "yes" %}selected{% endif %}>Yes</option>
+</select>
+
+{% else %}
+<input type="number"
+name="{{ field.html_name }}"
+id="{{ field.id_for_label }}"
+class="form-control"
+value="{{ field.value|default_if_none:'' }}"
+{% if field.field.required %}required{% endif %}
+{% if field.name == 'age' %}id="ageInput" placeholder="Enter age" min="0" max="120"{% endif %}
+{% if field.name == 'bmi' %}placeholder="Enter BMI (e.g., 25.5)" step="0.1"{% endif %}
+{% if field.name == 'children' %}placeholder="Enter number of children e.g:2"{% endif %}>
+{% endif %}
+
+{% if field.errors %}
+<div class="text-danger small">{{ field.errors|striptags }}</div>
+{% endif %}
+
+</div>
+{% endfor %}
+
+<div class="text-center">
+<button type="submit" class="btn btn-primary fw-bold px-4">
+<i class="fas fa-magic me-2"></i>Predict Claim
+</button>
+</div>
+
+</form>
+
+</div>
+</div>
+
+{% if prediction %}
+
+<div class="row justify-content-center mt-4">
+<div class="col-md-8 col-lg-6 text-center">
+
+<div class="alert alert-success fw-bold">
+<i class="fas fa-indian-rupee-sign me-2"></i>
+Estimated Claim Amount: {{ prediction }}
+</div>
+
+<div class="mb-3"
+style="display:inline-block;
+background-color:{{ risk_color }};
+color:white;
+padding:0.75rem 1.25rem;
+border-radius:12px;
+font-weight:700;
+font-size:1.1rem;">
+
+<i class="fas {% if risk_category == 'High' %}fa-exclamation-triangle{% else %}fa-check-circle{% endif %} me-2"></i>
+Risk Factor : {{ risk_category }}
+</div>
+
+</div>
+</div>
+
+<div class="container-fluid">
+
+{% if risk_factors %}
+<div class="recommendation-card">
+<p class="fw-semibold text-danger mb-2">Key Risk Factors</p>
+{% for factor in risk_factors %}
+<div>
+<i class="fas fa-exclamation-circle me-2 text-danger"></i>{{ factor }}
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+{% if recommendations %}
+<div class="recommendation-card">
+<p class="fw-semibold text-success mb-2">Recommendations</p>
+{% for rec in recommendations %}
+<div>
+<i class="fas fa-check-circle me-2 text-success"></i>{{ rec }}
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+</div>
+
+{% endif %}
+
+{% if error %}
+<div class="alert alert-danger mt-4 text-center">
+<i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+</div>
+{% endif %}
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+const age = document.querySelector("input[name='age']");
+const smoker = document.querySelector("select[name='smoker']");
+const children = document.querySelector("input[name='children']");
+
+age.addEventListener("input", function(){
+let ageVal = parseInt(age.value);
+
+if(ageVal <= 10){
+smoker.value = "no";
+smoker.style.pointerEvents = "none";
+children.value = 0;
+children.readOnly = true;
+}
+else{
+smoker.style.pointerEvents = "auto";
+children.readOnly = false;
+}
+});
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const form = document.querySelector("form");
+const inputs = form.querySelectorAll("input, select");
+
+inputs.forEach((input, index) => {
+input.addEventListener("keydown", function (e) {
+
+if (e.key === "Enter") {
+e.preventDefault();
+
+let next = inputs[index + 1];
+
+if (next) {
+next.focus();
+} else {
+form.submit();
+}
+}
+
+});
+});
+
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,217 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block contents %}
+
+<style>
+
+.container{
+    width:95%;
+    margin:40px auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title{
+    text-align:center;
+    font-size:28px;
+    font-weight:600;
+    margin-bottom:25px;
+    color:#2c3e50;
+}
+
+/* Table Styling */
+
+.dataset-table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    border-radius:8px;
+    overflow:hidden;
+    border:2px solid #2c3e50;
+}
+
+/* Header */
+
+.dataset-table thead{
+    background:#2c3e50;
+    color:white;
+}
+
+.dataset-table th{
+    padding:14px;
+    text-align:center;
+    font-size:15px;
+    letter-spacing:0.5px;
+    border:1px solid #dcdcdc;
+}
+
+/* Cells */
+
+.dataset-table td{
+    padding:12px;
+    text-align:center;
+    font-size:14px;
+    color:#444;
+    border:1px solid #dcdcdc;
+}
+
+/* Zebra Rows */
+
+.dataset-table tbody tr:nth-child(even){
+    background:#f7f9fc;
+}
+
+/* Hover */
+
+.dataset-table tbody tr:hover{
+    background:#eef4ff;
+    transition:0.2s;
+}
+
+/* Responsive Scroll */
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+/* Charges Highlight */
+
+.charges{
+    font-weight:600;
+    color:#1e8449;
+}
+
+</style>
+<div class="container">
+<div class="title">
+    Insurance Dataset (First 10 Rows)
+</div>
+
+<div class="table-wrapper">
+
+    <table class="dataset-table">
+
+        <thead>
+            <tr>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>BMI</th>
+                <th>Children</th>
+                <th>Smoker</th>
+                <th>Region</th>
+                <th>Charges (₹)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>19</td>
+                <td>Female</td>
+                <td>27.9</td>
+                <td>0</td>
+                <td>Yes</td>
+                <td>Southwest</td>
+                <td class="charges">16884.92</td>
+            </tr>
+
+            <tr>
+                <td>18</td>
+                <td>Male</td>
+                <td>33.77</td>
+                <td>1</td>
+                <td>No</td>
+                <td>Southeast</td>
+                <td class="charges">1725.55</td>
+            </tr>
+
+            <tr>
+                <td>28</td>
+                <td>Male</td>
+                <td>33</td>
+                <td>3</td>
+                <td>No</td>
+                <td>Southeast</td>
+                <td class="charges">4449.46</td>
+            </tr>
+
+            <tr>
+                <td>33</td>
+                <td>Male</td>
+                <td>22.705</td>
+                <td>0</td>
+                <td>No</td>
+                <td>Northwest</td>
+                <td class="charges">21984.47</td>
+            </tr>
+
+            <tr>
+                <td>32</td>
+                <td>Male</td>
+                <td>28.88</td>
+                <td>0</td>
+                <td>No</td>
+                <td>Northwest</td>
+                <td class="charges">3866.85</td>
+            </tr>
+
+            <tr>
+                <td>31</td>
+                <td>Female</td>
+                <td>25.74</td>
+                <td>0</td>
+                <td>No</td>
+                <td>Southeast</td>
+                <td class="charges">3756.62</td>
+            </tr>
+
+            <tr>
+                <td>46</td>
+                <td>Female</td>
+                <td>33.44</td>
+                <td>1</td>
+                <td>No</td>
+                <td>Southeast</td>
+                <td class="charges">8240.58</td>
+            </tr>
+
+            <tr>
+                <td>37</td>
+                <td>Female</td>
+                <td>27.74</td>
+                <td>3</td>
+                <td>No</td>
+                <td>Northwest</td>
+                <td class="charges">7281.50</td>
+            </tr>
+
+            <tr>
+                <td>37</td>
+                <td>Male</td>
+                <td>29.83</td>
+                <td>2</td>
+                <td>No</td>
+                <td>Northeast</td>
+                <td class="charges">6406.41</td>
+            </tr>
+
+            <tr>
+                <td>60</td>
+                <td>Female</td>
+                <td>25.84</td>
+                <td>0</td>
+                <td>No</td>
+                <td>Northwest</td>
+                <td class="charges">28923.13</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+</div>
+
+{% endblock %}

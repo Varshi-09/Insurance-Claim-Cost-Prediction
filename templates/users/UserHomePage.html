@@ -1,0 +1,172 @@
+{% extends 'users/userbase.html' %}
+{% block contents %}
+
+<style>
+    /* Full-screen gradient background */
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background:#fff;
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Gradient animation */
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Header from userbase.html assumed to be fixed */
+    main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: auto;
+        padding-top: auto; /* Offset for fixed header */
+    }
+
+    /* Intro section styling */
+    #intro {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100px; /* Adjust for header height */
+    }
+
+    .intro-text {
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 2rem 3rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(10, 16, 172, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+        max-width: 600px;
+        width: 90%;
+    }
+
+    .intro-text:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Typography */
+    .intro-text h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0 0 1rem 0;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .intro-text p {
+        font-size: 1rem;
+        color: #4b5563;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    /* Quick links */
+    .quick-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .quick-links a {
+        color: #3b82f6;
+        font-weight: 500;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border: 1px solid #3b82f6;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .quick-links a:hover {
+        background-color: #3b82f6;
+        color: #fff;
+    }
+
+    /* Call-to-action button */
+    .cta-button {
+        display: inline-block;
+        background-color: #3b82f6;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+        background-color: #fff;
+         color:  #3b82f6;
+         text-decoration: none;
+          border: 1px solid #3b82f6;
+        transform: translateY(-2px);
+    }
+
+    .cta-button:active {
+        transform: translateY(0);
+    }
+
+    /* Fade-in animation for the welcome message */
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+        .intro-text {
+            padding: 1.5rem 2rem;
+        }
+
+        .intro-text h3 {
+            font-size: 1.5rem;
+        }
+
+        .intro-text p {
+            font-size: 0.9rem;
+        }
+
+        .quick-links a {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .cta-button {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<main>
+    <section id="intro">
+        <div class="intro-text">
+            <h3>Welcome to User Homepage</h3>
+            <p>
+                Manage your insurance claims with ease. Use our tools to train models, predict claim costs, and file complaints efficiently. We're here to help you navigate the process seamlessly.
+            </p>
+            <div class="quick-links">
+                <a href="{% url 'training' %}">Train Model</a>
+                <a href="{% url 'predict_claim' %}">Predict Claim Cost</a>
+
+            </div>
+            <a href="{% url 'predict_claim' %}" class="cta-button">Get Started</a>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

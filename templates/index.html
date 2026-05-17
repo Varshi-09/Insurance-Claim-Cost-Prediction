@@ -1,0 +1,266 @@
+{% extends 'base.html' %}
+{% block contents %}
+{% load static %}
+
+<style>
+
+body{
+    min-height:100vh;
+    /*background-image:url('https://media.istockphoto.com/id/2181425381/vector/abstract-modern-medical-background-design-geometric-abstract-background-with-hexagons-grid.jpg?s=612x612&w=0&k=20&c=TGeT0gdzJ4Zzd1JMsnT7JJ9qA4llQdh4r-J5WzW8oLk=');*/
+    background-size:cover;
+    background-size: 100% 100%;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+main{
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.glass-panel{
+    width:calc(100% - 140px);
+    max-width:1100px;
+    min-height:62vh;
+    padding:45px;
+    border-radius:22px;
+
+    background:rgba(255,255,255,0.15);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.hero{
+    display:flex;
+    flex-direction:column;
+    gap:50px;
+}
+
+.about-project{
+    text-align:center;
+    max-width:900px;
+    margin:auto;
+}
+
+.about-project h2{
+    font-size:32px;
+    margin-bottom:12px;
+    color:#142850;
+}
+
+.about-project p{
+    font-size:16px;
+    line-height:1.7;
+    color:#374151;
+}
+
+/* STATS */
+.stats{
+    display:flex;
+    gap:25px;
+    justify-content:center;
+    margin-top:8px;
+}
+
+.stat{
+    font-size:26px;
+    color:#142850;
+}
+
+.stat small{
+    display:block;
+    font-size:13px;
+}
+
+/* BANNER */
+
+.banner-image img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+    transition:0.5s;
+    image-rendering: auto;
+}
+
+.banner-image img:hover{
+    transform:scale(1.05);
+    box-shadow:0 20px 40px rgba(0,0,0,0.35);
+}
+
+.hero-main{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.hero-left{
+    text-align:left;
+}
+
+/* BUTTON */
+
+.hero-btns{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.try-btn{
+    background:#1f75d6;
+    color:white;
+    padding:14px 32px;
+    font-weight:600;
+    border-radius:10px;
+    text-decoration:none;
+    box-shadow:0 8px 18px rgba(31,117,214,0.35);
+    transition:all 0.3s ease;
+    margin-top:auto;
+}
+
+.try-btn:hover{
+    transform:translateY(-3px) scale(1.04);
+    box-shadow:0 12px 25px rgba(144, 165, 189, 0.45);
+    text-decoration: none;
+    color:white;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:25px;
+    padding:15px 0;
+    text-align:center;
+    background:linear-gradient(90deg, #3f74f0, #0665f3);
+    color:#fff;
+    font-size:14px;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.glass-panel{
+    width:92%;
+}
+
+.hero-main{
+    flex-direction:column;
+}
+
+.stats{
+    flex-direction:column;
+}
+}
+
+/* ML FLOW (UNCHANGED) */
+
+.ml-flow {
+    width: 100%;
+    padding: 20px 10px;
+    text-align:left;
+}
+
+.ml-steps {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.step {
+    padding: 10px 14px;
+    background: rgba(1, 147, 244, 0.15);
+    border-radius: 30px;
+     border:2px solid #b9dcfa;
+    text-align: center;
+    color: #0d0d0d;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.step span {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.step:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: rgba(104, 158, 230, 0.35);
+    box-shadow: 0 0 15px rgba(255,255,255,0.4),
+                0 8px 20px rgba(0,0,0,0.2);
+}
+
+.arrow {
+    font-size: 20px;
+    color: solid#555;
+    margin: 0 5px;
+    animation: moveArrow 1.2s infinite alternate;
+}
+
+@keyframes moveArrow {
+    from { transform: translateX(0); }
+    to { transform: translateX(6px); }
+}
+
+</style>
+
+<main>
+<div class="glass-panel hero">
+
+<div class="about-project">
+<h2 style="font-family:'Inter',sans-serif;font-weight: 700;">About Insurance Claim Cost Prediction</h2>
+
+<p>
+An intelligent machine learning system that predicts health insurance claim costs by analyzing key health and demographic factors such as age, BMI, smoking habits, and location. By modeling complex data patterns, it delivers accurate cost estimates that outperform traditional methods and support effective risk assessment and pricing decisions.
+</p>
+<br>
+<div class="banner-image">
+<img src="{% static 'C:\Users\DELL\OneDrive\Desktop\4-2 project\71.Optimization of Insurance Claim Cost Prediction Through Health Data and Machine Learning\Optimization of Insurance Claim Cost Prediction Through Health Data and Machine Learning\Code\static\images\imp.jpeg' %}" alt="Banner Image">
+</div>
+<br>
+<section class="ml-flow">
+<h2 style="font-family: 'Inter', sans-serif;font-weight: 700;font-size:25px;">How our prediction system works</h2>
+
+<div class="ml-steps">
+<div class="step reveal"><i class="fas fa-notes-medical fa-1.5x"></i><span>Enter Health Data</span></div>
+<div class="arrow">➜</div>
+
+<div class="step reveal"><i class="fa fa-cogs fa-1.5x"></i><span>Data Pre-processing</span></div>
+<div class="arrow">➜</div>
+
+<div class="step reveal"><i class="fas fa-robot fa-1.5x"></i><span>Model Prediction</span></div>
+<div class="arrow">➜</div>
+
+<div class="step reveal"><i class="fas fa-indian-rupee-sign fa-1.5x"></i><span>Estimated Cost</span></div>
+</div>
+</section>
+
+<div class="hero-btns">
+<a href="{% url 'UserLogin' %}" class="try-btn">
+<i class="fas fa-magic"></i> Try Prediction Now
+</a>
+</div>
+
+</div>
+</main>
+
+<footer>© 2025 health insurance</footer>
+
+{% endblock %}

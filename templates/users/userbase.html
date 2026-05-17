@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Insurance Claim Cost</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Insurance Claim Cost" name="description">
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap & Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <style>
+        
+ .navbar {
+            background: linear-gradient(90deg, #0d6efd, #6610f2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            border-radius:8px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            color: #020509 !important;
+        }
+
+        .navbar-brand i {
+            color: #ffffff;
+        }
+.navbar-brand i:hover {
+            color: #171717;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(241, 227, 227, 1.5);
+            transform: translateY(-2px);
+            color: #101010 !important;
+        }
+
+        .nav-icon {
+            font-size: 1rem;
+            color: #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover .nav-icon {
+            transform: scale(1.2);
+            color: #020509;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar-nav {
+            gap: 1rem;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav {
+                padding: 1rem;
+                background: linear-gradient(90deg, #0d6efd, #6610f2);
+                border-radius: 8px;
+                margin-top: 0.5rem;
+            }
+            .nav-link {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+            .navbar {
+                padding: 0.75rem 1rem;
+            }
+        }
+        .page-header {
+            background: #f8f9fa;
+            padding: 2rem 0;
+            border-bottom: 2px solid #dee2e6;
+            min-height: 50px;
+        }
+
+        .page-header h2 {
+            font-weight: 700;
+            color: #8b0000;
+        }
+
+        
+        .back-to-top {
+            position: fixed;
+            display: none;
+            right: 20px;
+            bottom: 20px;
+            z-index: 99;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            padding: 10px 14px;
+            font-size: 16px;
+        }
+
+        .back-to-top:hover {
+            background: #0056b3;
+        }
+        footer {
+    margin-top: 18px;
+    padding: 15px 0;
+    text-align: center;
+    background: #2265a9;     /* solid professional blue 
+    background: linear-gradient(90deg, #666768, #0D4C4C);*/
+    color: #fff;              /* white text for contrast */
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+        <div class="container-fluid">
+            <a href="{% url 'UserHome' %}" class="navbar-brand"><i class="fas fa-heartbeat"></i><span>Insurance Claim Cost</span></a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a href="{% url 'UserHome' %}" class="nav-item nav-link"><i class="fas fa-home nav-icon"></i> Home</a>
+                    <a href="{% url 'training' %}" class="nav-item nav-link"><i class="fas fa-brain"></i> Training</a>
+                    <a href="{% url 'predict_claim' %}" class="nav-item nav-link"><i class="fas fa-chart-line"></i> Predict Claim</a>
+                    <a href="{% url 'viewdataset' %}" class="nav-item nav-link"><i class="fa-solid fa-database"></i> Dataset</a>
+                    <a href="{% url 'index' %}" class="nav-item nav-link"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                    
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Page Header Start -->
+    <!-- <div class="page-header text-center">
+        <div class="container">
+            <h2>Consumer Complaints</h2>
+        </div>
+    </div> -->
+    <!-- Page Header End -->
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        {% block contents %}
+        {% endblock %}
+    </main>
+<footer>© 2025 health insurance</footer>
+
+<!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'mail/contact.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Smooth Scroll Back-to-Top -->
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.back-to-top').fadeIn();
+                } else {
+                    $('.back-to-top').fadeOut();
+                }
+            });
+
+            $('.back-to-top').click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 600);
+                return false;
+            });
+        });
+    </script>
+
+</body>
+
+</html>

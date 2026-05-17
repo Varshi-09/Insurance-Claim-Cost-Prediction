@@ -1,0 +1,94 @@
+{% extends 'users/userbase.html' %}
+
+{% block contents %}
+
+<div class="container mt-5 text-center">
+
+    <!-- ===== Model Heading ===== -->
+    <h2 class="model-heading">{{ model }} Performance</h2>
+
+    <!-- ===== Model Card ===== -->
+    <div class="card shadow mt-4 model-card">
+        <div class="card-body">
+
+            <!-- Metrics -->
+            <div class="metrics-box">
+                <p><strong>R² Score:</strong> {{ metrics.r2|floatformat:4 }}</p>
+                <p><strong>MAE:</strong> {{ metrics.mae|floatformat:2 }}</p>
+            </div>
+
+            <!-- Graph -->
+            <div class="graph-section">
+                <img src="data:image/png;base64,{{ graph }}" class="img-fluid graph-img">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <br>
+    <a href="{% url 'training' %}" class="btn btn-primary back-btn">
+        Back to Training Page
+    </a>
+
+</div>
+
+<style>
+/* ===== Page Heading ===== */
+.model-heading{
+    font-weight:600;
+    margin-bottom:30px;
+    font-size:28px;
+    color:#2c3e50;
+}
+
+/* ===== Model Card ===== */
+.model-card{
+    border-radius:16px; /* increased radius for elegant look */
+    border:1px solid #e6e6e6;
+    padding:15px;
+    background-color:#ffffff;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08); /* subtle depth */
+}
+
+/* ===== Metrics ===== */
+.metrics-box{
+    font-size:16px;
+    margin-bottom:20px;
+}
+
+.metrics-box p{
+    margin:6px 0;
+    color:#34495e;
+    font-weight:500;
+}
+
+/* ===== Graph Section ===== */
+.graph-section{
+    padding-top:10px;
+}
+
+.graph-img{
+    border-radius:12px; /* rounded graph corners */
+    max-width:90%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ===== Button ===== */
+.back-btn{
+    margin-top:20px;
+    padding:10px 20px;
+    border-radius:8px;
+    font-size:14px;
+    background-color:#2c7be5;
+    border:none;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background-color:#1a5bb8;
+    text-decoration:none;
+}
+</style>
+
+{% endblock %}

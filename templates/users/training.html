@@ -1,0 +1,201 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block contents %}
+
+<div class="container mt-5">
+<h2 class="main-heading text-center">
+    <i class="fas fa-chart-line heading-icon"></i>
+    Model Training & Evaluation
+</h2>
+
+{% if results.error %}
+    <div class="alert alert-danger">{{ results.error }}</div>
+{% else %}
+
+    <!-- ===== Algorithms Section ===== -->
+
+    <div class="row text-center section-space">
+
+        {% for model, metrics in results.results.items %}
+
+        {% if model == "Gradient Boosting" %}
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="card shadow model-card w-100"
+                 onclick="window.location.href='{% url 'model_detail' model %}'"
+                 style="cursor:pointer;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <h5 class="card-title">{{ model }}</h5>
+                    <p class="metric-text">R² : {{ metrics.r2|floatformat:3 }}</p>
+                    <p class="metric-text">MAE : {{ metrics.mae|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if model == "Random Forest" %}
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="card shadow model-card w-100"
+                 onclick="window.location.href='{% url 'model_detail' model %}'"
+                 style="cursor:pointer;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <h5 class="card-title">{{ model }}</h5>
+                    <p class="metric-text">R² : {{ metrics.r2|floatformat:3 }}</p>
+                    <p class="metric-text">MAE : {{ metrics.mae|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if model == "Decision Tree" %}
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="card shadow model-card w-100"
+                 onclick="window.location.href='{% url 'model_detail' model %}'"
+                 style="cursor:pointer;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <h5 class="card-title">{{ model }}</h5>
+                    <p class="metric-text">R² : {{ metrics.r2|floatformat:3 }}</p>
+                    <p class="metric-text">MAE : {{ metrics.mae|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if model == "Linear Regression" %}
+        <div class="col-lg-3 col-md-6 mb-4 d-flex">
+            <div class="card shadow model-card w-100"
+                 onclick="window.location.href='{% url 'model_detail' model %}'"
+                 style="cursor:pointer;">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                    <h5 class="card-title">{{ model }}</h5>
+                    <p class="metric-text">R² : {{ metrics.r2|floatformat:3 }}</p>
+                    <p class="metric-text">MAE : {{ metrics.mae|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ===== Success Message ===== -->
+
+    <div class="alert alert-success text-center section-space">
+        {{ results.message }}
+    </div>
+
+
+    <!-- ===== Best Performing Model ===== -->
+
+    <div class="best-model-box">
+
+        <h4 class="best-heading">
+             Best Performing Model
+        </h4>
+
+        <p class="best-model-name">
+            <strong>Model:</strong> {{ best_model }}
+        </p>
+
+        <div class="metric-row">
+            <span><strong>R² Score :</strong> {{ best_metrics.r2|floatformat:4 }}</span>
+            <span><strong>MAE :</strong> {{ best_metrics.mae|floatformat:2 }}</span>
+        </div>
+
+        <p class="reason-text">
+            <strong>Reason:</strong><br>
+            Highest R² score and lowest MAE among all models, indicating the most accurate predictions.
+        </p>
+
+    </div>
+
+
+    <!-- ===== Model Comparison ===== -->
+
+    <div class="card mt-5 shadow-sm section-space">
+        <div class="card-body text-center">
+            <h5 class="card-title">📈 Model Comparison (R² Score)</h5>
+            <img src="data:image/png;base64,{{ results.comparison_plot }}" class="img-fluid">
+        </div>
+    </div>
+
+{% endif %}
+</div>
+
+<style>
+
+/* ===== Heading ===== */
+
+.main-heading{
+    margin-bottom:35px;
+    font-weight:600;
+}
+
+.heading-icon{
+    color:#2c7be5;
+    margin-right:8px;
+}
+
+
+/* ===== Section spacing ===== */
+
+.section-space{
+    margin-top:30px;
+}
+
+
+/* ===== Algorithm Cards ===== */
+
+.model-card{
+    height:160px;
+    transition:0.3s;
+    border-radius:10px;
+    border:2px solid #28a745;
+}
+
+.model-card:hover{
+    transform:scale(1.05);
+}
+
+
+/* metrics inside card */
+
+.metric-text{
+    font-size:14px;
+    margin:2px 0;
+}
+
+
+/* ===== Best Model Section ===== */
+
+.best-model-box{
+    margin-top:35px;
+    padding:22px;
+    border:1px solid #e6e6e6;
+    border-left:5px solid #28a745;
+    background:#f1f9f3;
+    border-radius:10px;
+}
+
+.best-heading{
+    margin-bottom:18px;
+    color:#28a745;
+    font-weight:600;
+}
+
+.best-model-name{
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.metric-row{
+    display:flex;
+    gap:40px;
+    font-size:15px;
+    margin-bottom:15px;
+}
+
+</style>
+
+{% endblock %}

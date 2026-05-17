@@ -1,0 +1,74 @@
+{% extends 'admins/adminbase.html'%}
+{% block contents %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+
+        /* Background Image */
+        background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+            url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80');
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+    }
+
+    .wrapper {
+        height: 85vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title {
+        font-size: 34px;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 25px;
+    }
+
+    .card {
+        width: 70%;
+        max-width: 900px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 18px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        text-align: center;
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-6px);
+    }
+
+    .card h3 {
+        font-size: 20px;
+        color: #444;
+        line-height: 1.6;
+    }
+
+    .highlight {
+        color: #4a7cf3;
+        font-weight: 600;
+    }
+</style>
+
+<section class="wrapper">
+
+    <h2 class="title">Welcome Admin</h2>
+
+    <div class="card">
+        <h3>
+            Optimization of 
+            <span class="highlight">Insurance Claim Cost Prediction</span> 
+            using Machine Learning and Health Data
+        </h3>
+    </div>
+
+</section>
+
+{% endblock %}

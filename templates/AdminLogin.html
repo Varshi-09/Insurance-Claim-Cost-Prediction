@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rumor Source Identification</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Multi-colored gradient background */
+        body {
+    font-family: Arial, sans-serif;
+    background: url("https://media.istockphoto.com/id/1446748319/photo/account-save-money-and-family-icon-planning-step-up-saving-money-for-future-plan-retirement.jpg?s=612x612&w=0&k=20&c=k6RJ4d-QomgjzWEKeXMi_cnK_jshVeCoXquAu6IkWbI=");
+    background-size:auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    background-size: 100%;
+    background-size: 100% 100%;
+    padding: 0;
+}
+
+        .login-container {
+            margin-top: 100px;
+            padding: 30px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius:15px;
+            border:1px solid rgba(21, 7, 7, 0.3);
+            box-shadow:0 8px 32px rgba(0,0,0,0.25);
+        }
+
+        .login-container h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login Form Container -->
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="login-container col-12 col-md-6 col-lg-4">
+            <h2 class="text-center">Admin Login</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="login_id" placeholder="Enter Login Id" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+{% endblock %}

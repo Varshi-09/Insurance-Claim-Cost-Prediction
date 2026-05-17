@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Claim Cost Prediction</title>
+    <!-- Bootstrap 4.5.2 CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Tailwind CSS CDN for utility classes -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #3f74f0, #0665f3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            border-radius:8px;
+            min-height:50px;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            color: #020509 !important;
+        }
+
+        .navbar-brand i {
+            color: #ffffff;
+        }
+.navbar-brand i:hover {
+            color: #171717;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(241, 227, 227, 1.5);
+            transform: translateY(-2px);
+            color: #101010 !important;
+        }
+
+        .nav-icon {
+            font-size: 1rem;
+            color: #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover .nav-icon {
+            transform: scale(1.2);
+            color: #020509;
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar-nav {
+            gap: 1rem;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-nav {
+                padding: 1rem;
+                background: linear-gradient(90deg, #0d6efd, #6610f2);
+                border-radius: 8px;
+                margin-top: 0.5rem;
+            }
+            .nav-link {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+            .navbar {
+                padding: 0.75rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{% url 'index' %}"><i class="fas fa-heartbeat"></i> Insurance Claim Cost Prediction</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link"href="{% url 'index' %} "index"><i class="fas fa-home nav-icon"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'UserLogin' %}"><i class="fas fa-user nav-icon"></i>User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'AdminLogin' %}"><i class="fas fa-user-shield nav-icon"></i>Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'UserRegisterForm' %}"><i class="fas fa-user-plus nav-icon"></i>Register</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content Block -->
+    {% block contents %}
+    {% endblock %}
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

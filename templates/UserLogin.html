@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+
+<style>
+
+/* FULL BACKGROUND */
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    font-family: Arial, sans-serif;
+
+    /* exact freepik style gradient */
+    background:
+linear-gradient(
+135deg,
+#0F2027 0%,
+#203A43 40%,
+#2C5364 75%,
+rgba(255,255,255,0.12) 100%
+);
+    overflow:hidden;
+}
+
+
+/* PARTICLES BACKGROUND */
+
+#particles-js{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+z-index:-1;
+pointer-events:none;
+}
+
+
+/* glowing background orbs */
+
+.bg-light1{
+    position:absolute;
+    width:350px;
+    height:350px;
+    background: radial-gradient(circle,#00f2ff,transparent 70%);
+    left:-120px;
+    top:40%;
+    filter:blur(90px);
+}
+
+.bg-light2{
+    position:absolute;
+    width:350px;
+    height:350px;
+    background: radial-gradient(circle,#00f2ff,transparent 70%);
+    right:-120px;
+    top:40%;
+    filter:blur(90px);
+}
+
+
+/* page center */
+
+.full-height{
+    height:100vh;
+}
+
+
+/* GLASS CARD */
+
+.card{
+
+    background: rgba(255,255,255,0.06);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border-radius:25px;
+
+    border:2px solid rgba(0,255,255,0.4);
+
+    padding:40px;
+
+    box-shadow:
+        0 0 35px rgba(0,255,255,0.35),
+        inset 0 0 10px rgba(255,255,255,0.05);
+
+}
+
+
+/* heading */
+
+h1{
+    color:white;
+    font-weight:bold;
+}
+
+
+/* INPUT FIELDS */
+
+.form-control{
+
+    background: rgba(0,0,0,0.35);
+
+    border:1px solid rgba(0,255,255,0.35);
+
+    color:white;
+
+    height:45px;
+
+}
+
+.form-control::placeholder{
+    color:#cfe9ff;
+}
+
+
+/* LOGIN BUTTON */
+
+.btn-primary{
+
+background: linear-gradient(90deg,#00c6ff,#0072ff);
+
+border:none;
+
+height:45px;
+
+font-weight:bold;
+
+}
+
+.btn-primary:hover{
+
+    background: linear-gradient(90deg,#0072ff,#00c6ff);
+
+}
+
+
+/* message */
+
+.text-success{
+    color:#00eaff !important;
+}
+
+</style>
+
+
+<!-- PARTICLES CONTAINER -->
+<div id="particles-js"></div>
+
+
+<div class="bg-light1"></div>
+<div class="bg-light2"></div>
+
+
+
+<section class="full-height d-flex align-items-center justify-content-center">
+
+<div class="container">
+
+<div class="row text-center mb-4">
+<div class="col-12">
+
+<h1 class="h3 font-weight-bold">User Login Form</h1>
+
+</div>
+</div>
+
+
+
+<div class="row justify-content-center">
+
+<div class="col-12 col-md-6 col-lg-4">
+
+<div class="card shadow-sm">
+
+<form action="{% url 'UserLoginCheck' %}" method="POST" class="text-primary">
+
+{% csrf_token %}
+
+
+
+<div class="form-group">
+
+<input type="text" class="form-control" name="loginid" required placeholder="Enter Login Id">
+
+</div>
+
+
+
+<div class="form-group">
+
+<input type="password" class="form-control" name="pswd" required placeholder="Enter Password">
+
+</div>
+
+
+
+<div class="form-group d-flex justify-content-between">
+
+<button type="submit" class="btn btn-primary btn-block text-white">Login</button>
+
+</div>
+
+
+
+{% if messages %}
+<div class="mt-3">
+{% for message in messages %}
+<p class="text-success">{{ message }}</p>
+{% endfor %}
+</div>
+{% endif %}
+
+
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PARTICLES SCRIPT -->
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+<script>
+
+tsParticles.load("particles-js", {
+
+fullScreen:{ enable:false },
+
+background:{ color:{ value:"transparent" } },
+
+fpsLimit:60,
+
+particles:{
+
+number:{
+value:70,
+density:{ enable:true, area:800 }
+},
+
+color:{ value:"#00eaff" },
+
+shape:{ type:"circle" },
+
+opacity:{ value:0.4 },
+
+size:{ value:{min:2,max:5} },
+
+links:{
+enable:true,
+distance:150,
+color:"#00eaff",
+opacity:0.25,
+width:1
+},
+
+move:{
+enable:true,
+speed:2,
+direction:"none",
+random:false,
+straight:false,
+outModes:{ default:"bounce" }
+}
+
+},
+
+interactivity:{
+
+events:{
+onHover:{ enable:true, mode:"repulse" },
+onClick:{ enable:true, mode:"push" }
+},
+
+modes:{
+repulse:{ distance:120, duration:0.4 },
+push:{ quantity:4 }
+}
+
+},
+
+detectRetina:true
+
+});
+
+</script>
+
+{% endblock %}
